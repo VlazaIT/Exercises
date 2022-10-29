@@ -16,12 +16,12 @@ class Car:
         self.travelled_distance = travelled_distance
 
     def accerelate(self, speed_change):
-            self.current_speed = self.current_speed + speed_change
-            if self.current_speed > self.max_speed:
-                self.current_speed = self.max_speed
-            elif self.current_speed <= 0:
-                self.current_speed = 0
-            print(f"Current speed of the new car after accerelating by {speed_change:d} km/h is {self.current_speed:d} km/h")
+        self.current_speed = self.current_speed + speed_change
+        if self.current_speed > self.max_speed:
+            self.current_speed = self.max_speed
+        elif self.current_speed <= 0:
+            self.current_speed = 0
+        print(f"Current speed of the new car after accerelating by {speed_change:d} km/h is {self.current_speed:d} km/h")
 
 car1 = Car("ABC-123", 142)
 
