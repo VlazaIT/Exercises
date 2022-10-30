@@ -6,7 +6,7 @@
 # Test the class by creating an elevator in the main program, tell it to move to a floor of your choice and then back to the bottom floor.
 
 class Elevator:
-    def __init__(self, bottom_floor, top_floor):
+    def __init__(self, bottom_floor=0, top_floor=10):
         self.bottom_floor = bottom_floor
         self.top_floor = top_floor
         self.current_floor = bottom_floor
@@ -14,21 +14,27 @@ class Elevator:
 
     def go_to_floor(self,chosen_floor):
         if self.current_floor <= chosen_floor:
-            for i in range(chosen_floor-self.current_floor):
+            for i in range(chosen_floor - self.current_floor):
                 self.floor_up()
             self.current_floor = chosen_floor
             print(f"You are at {self.current_floor} floor NOW")
 
-
-
+        else:
+            for i in range(self.current_floor - chosen_floor):
+                self.floor_down()
+            self.current_floor = chosen_floor
+            print(f"You are at {self.current_floor} floor NOW")
 
     def floor_up(self):
         #while self.current_floor < self.top_floor:
         self.current_floor = self.current_floor + 1
         print(f"You are at {self.current_floor} floor")
 
-    #def floor_down(self):
+    def floor_down(self):
+        self.current_floor = self.current_floor - 1
+        print(f"You are at {self.current_floor} floor")
 
-elevator1 = Elevator(0,10)
+elevator1 = Elevator()
 elevator1.go_to_floor(5)
-elevator1.go_to_floor(6)
+elevator1.go_to_floor(3)
+elevator1.go_to_floor(12)
