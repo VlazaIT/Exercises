@@ -1,4 +1,4 @@
-#This exercise continues the previous car race exercise from the last exercise set.
+# This exercise continues the previous car race exercise from the last exercise set.
 # Write a Race class that has the following properties: name, distance in kilometers and a list of cars participating in the race.
 # The class has an initializer that receives the name, kilometers, and car list as parameters and sets their values to the corresponding properties in the class.
 # The class has the following methods:
@@ -65,7 +65,7 @@ reg_number = 1
 
 race1 = Race("Grand Demolition Derby", 8000, cars_list)
 
-print(f"Information about cars participating in this race:\n")
+print(f"Information about cars participating in {race1.name} race:\n")
 
 for i in range(10):
     m_speed = random.randint(100, 200)  # max speed randomized
@@ -83,7 +83,7 @@ while not status:
     race1.hour_passes()
     status = race1.race_finished()
     if time % 10 == 0:
-        print(f"\nResults after {time} hours of of race:\n")
+        print(f"\nResults after {time} hours of the race:\n")
         race1.print_status()
     time = time + 1
 
