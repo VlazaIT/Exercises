@@ -1,3 +1,18 @@
+#This exercise continues the previous car race exercise from the last exercise set.
+# Write a Race class that has the following properties: name, distance in kilometers and a list of cars participating in the race.
+# The class has an initializer that receives the name, kilometers, and car list as parameters and sets their values to the corresponding properties in the class.
+# The class has the following methods:
+
+    #hour_passes, which performs the operations done once per hour in the original exercise: generates a random change of speed for each car and calls their drive method.
+    #print_status, which prints out the current information of each car as a clear, formatted table.
+    #race_finished, which returns True if any of the cars has reached the finish line, meaning that they have driven the entire distance of the race.
+
+# Write a main program that creates an 8000-kilometer race called Grand Demolition Derby.
+# The new race is given a list of ten cars similarly to the earlier exercise.
+# The main program simulates the progressing of the race by calling the hour_passes in a loop, after which it uses the race_finished method to check if the race has finished.
+# The current status is printed out using the print_status method every ten hours and then once more at the end of the race.
+
+
 import random
 
 class Race:
@@ -7,18 +22,18 @@ class Race:
         self.list_of_cars = list_of_cars
 
     def hour_passes(self):
-        for auto in self.list_of_cars:
+        for new_car in self.list_of_cars:
             speed_change = random.randint(-10, 15)
-            auto.drive(speed_change)
+            new_car.drive(speed_change)
 
     def print_status(self):
-        for auto in self.list_of_cars:
-            auto.car_info()
+        for new_car in self.list_of_cars:
+            new_car.car_info()
 
     def race_finished(self):
         race_over = False
-        for automobile in self.list_of_cars:
-            distance = automobile.travelled_distance_info()
+        for new_car in self.list_of_cars:
+            distance = new_car.travelled_distance_info()
             if distance >= self.distance:
                 race_over = True
         return race_over
@@ -31,7 +46,7 @@ class Car:
         self.travelled_distance = travelled_distance
 
     def car_info(self):
-        print(f"ABD-{self.registration_number}, current speed: {self.current_speed} km/h, travelled distance: {self.travelled_distance} km")
+        print(f"ABC-{self.registration_number}, max speed: {self.max_speed} km/h, current speed: {self.current_speed} km/h, travelled distance: {self.travelled_distance} km")
 
     def travelled_distance_info(self):
         return self.travelled_distance
@@ -44,8 +59,13 @@ class Car:
         self.travelled_distance = self.travelled_distance + self.current_speed
         return self.travelled_distance, self.current_speed
 
+
 cars_list = []
 reg_number = 1
+
+race1 = Race("Grand Demolition Derby", 8000, cars_list)
+
+print(f"Information about cars participating in this race:\n")
 
 for i in range(10):
     m_speed = random.randint(100, 200)  # max speed randomized
@@ -54,10 +74,8 @@ for i in range(10):
         c_speed = m_speed
     new_car = Car(reg_number, m_speed, c_speed)
     cars_list.append(new_car)
-    print(f"Registration number: ABC-{reg_number}, max speed is {m_speed} km/h, current speed is {c_speed} km/h ")
+    print(f"Registration number: ABC-{reg_number}, max speed: {m_speed} km/h, current speed: {c_speed} km/h")
     reg_number = reg_number + 1
-
-race1 = Race("Grand Demolition Derby", 8000, cars_list)
 
 status = False
 time = 1
@@ -65,9 +83,9 @@ while not status:
     race1.hour_passes()
     status = race1.race_finished()
     if time % 10 == 0:
-        print(f"\n{time} hours into the race:")
+        print(f"\nResults after {time} hours of of race:\n")
         race1.print_status()
     time = time + 1
 
-print(f"\n{race1.name} has ended! The result is:\n")
+print(f"\n{race1.name} is over! \nThe results are as follows:\n")
 race1.print_status()
