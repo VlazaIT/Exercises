@@ -11,22 +11,28 @@ class Elevator:
         self.top_floor = top_floor
         self.current_floor = bottom_floor
 
-
-    def go_to_floor(self,chosen_floor):
+    def go_to_floor(self, chosen_floor):
+        print(f"Selected floor: {chosen_floor} and you are now at {self.current_floor} floor")
         if self.current_floor <= chosen_floor:
-            for i in range(chosen_floor - self.current_floor):
-                self.floor_up()
-            self.current_floor = chosen_floor
-            print(f"You are at {self.current_floor} floor NOW")
-
+            if chosen_floor > self.top_floor:
+                for i in range(self.top_floor - self.current_floor):
+                    self.floor_up()
+                self.current_floor = self.top_floor
+            else:
+                for i in range(chosen_floor - self.current_floor):
+                    self.floor_up()
+                self.current_floor = chosen_floor
         else:
-            for i in range(self.current_floor - chosen_floor):
-                self.floor_down()
-            self.current_floor = chosen_floor
-            print(f"You are at {self.current_floor} floor NOW")
+            if chosen_floor < self.bottom_floor:
+                for i in range(self.current_floor - self.bottom_floor):
+                    self.floor_down()
+                self.current_floor = self.bottom_floor
+            else:
+                for i in range(self.current_floor - chosen_floor):
+                    self.floor_down()
+                self.current_floor = chosen_floor
 
     def floor_up(self):
-        #while self.current_floor < self.top_floor:
         self.current_floor = self.current_floor + 1
         print(f"You are at {self.current_floor} floor")
 
@@ -34,7 +40,9 @@ class Elevator:
         self.current_floor = self.current_floor - 1
         print(f"You are at {self.current_floor} floor")
 
+
 elevator1 = Elevator()
 elevator1.go_to_floor(5)
-elevator1.go_to_floor(3)
+elevator1.go_to_floor(-1)
 elevator1.go_to_floor(12)
+elevator1.go_to_floor(elevator1.bottom_floor)
