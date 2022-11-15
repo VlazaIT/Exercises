@@ -10,14 +10,14 @@ app = Flask(__name__)
 def prime_number(number):
     number = int(number)
     if number == 1:
-        answer = "false"
+        answer = False
     else:
         for i in range(2, number):
             if (number % i == 0):
-                answer = "false"
+                answer = False
                 break
         else:
-            answer = "true"
+            answer = True
 
     response = {
         "Number": number,
